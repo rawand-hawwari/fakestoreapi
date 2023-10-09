@@ -1,16 +1,7 @@
-/* body {
-    display: flex;
-    flex-direction: column;
-    min-height: 150vh;
-    margin: 10px;
-} */
 
 body a{
-    text-decoration: none;}
-
-/* main {
-    flex: 1;
-} */
+    text-decoration: none;
+}
 
 nav{
     background-color: #333;
@@ -26,6 +17,17 @@ nav{
     height: 15rem;
     object-fit: fill;
     align-self: center;
+}
+
+button.update, button.delete{
+    width: 40px;
+    height: 40px;
+    border: 1px solid;
+    border-radius: 20%;
+}
+
+.form-control{
+    width: 50%;
 }
 
 footer {
