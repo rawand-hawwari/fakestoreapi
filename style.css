@@ -1,20 +1,36 @@
-body {
+/* body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-}
+    min-height: 150vh;
+    margin: 10px;
+} */
 
 body a{
     text-decoration: none;}
 
-main {
+/* main {
     flex: 1;
+} */
+
+nav{
+    background-color: #333;
+    color: white;
+}
+
+.card{
+    height: 29rem;
+}
+
+.card img{
+    width: 13rem;
+    height: 15rem;
+    object-fit: fill;
+    align-self: center;
 }
 
 footer {
     background-color: #333;
     color: white;
-    padding: 10px;
+    /* padding: 10px; */
     text-align: center;
 }
