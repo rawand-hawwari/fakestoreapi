@@ -23,7 +23,7 @@ function printProducts(products){
                         <button id="delete${i}" onclick="deleteProduct(${i})"><i class="fa fa-remove"></i></button>
                     </div>
                 </div>`;
-                console.log(`image: ${product.image}, title: ${product.title}, price: ${product.price}, category: ${product.category}`);
+                // console.log(`image: ${product.image}, title: ${product.title}, price: ${product.price}, category: ${product.category}`);
                 i++;
     });
 }
@@ -37,7 +37,7 @@ function getData(){
                 product = new Product (product.title , product.category  , product.description   , product.image    , product.price);
                 return product;
             });
-            console.log(products);
+            // console.log(products);
 
             printProducts(products);
         })
@@ -53,7 +53,7 @@ function getData1(){
                 product = new Product (product.title, product.category, product.image, product.price);
                 return product;
             });
-            console.log(products);
+            // console.log(products);
 
             printProducts(products);
         })
@@ -89,44 +89,48 @@ function addnew(){
 
 // function to update data in the json server
 function update(index){
-    let updatedData = [];
+    let updatedData = {};
     let title = prompt("Enter new title to update (leave it empty if you don't want to change it)");
     let category = prompt("Enter new category to update (leave it empty if you don't want to change it)");
     let image = prompt("Enter new image URL to update (leave it empty if you don't want to change it)");
     let price = prompt("Enter new price to update (leave it empty if you don't want to change it)");
 
-    if(title != null){
-        updatedData += {'title':title};
+    console.log(`title: ${title}, category: ${category}, image: ${image}, price: ${price}`);
+    if (title !== null && title !== '') {
+        updatedData.title = title;
     }
-    if(image != null){
-        updatedData += {'image':image};
+    if (image !== null && image !== '') {
+        updatedData.image = image;
     }
-    if(category != null){
-        updatedData += {'category':category};
+    if (category !== null && category !== '') {
+        updatedData.category = category;
     }
-    if(price != null){
-        updatedData += {'price':price};
+    if (price !== null && price !== '') {
+        updatedData.price = price;
     }
 
+    console.log(updatedData);
+
     fetch(`http://localhost:3000/products/${index}`, {
-  method: 'PUT',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(updatedData),
-})
-  .then(response => response.json())
-  .then(data => {
-    console.log('Post updated:', data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+        method: 'PATCH', // Use 'PATCH' for partial updates
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedData), // Stringify the updated data object
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Product updated:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
 }
 
 // function to delete data from the json server
 function deleteProduct(index){
-    fetch(`http://localhost:3000/posts/${index}`, {
+    fetch(`http://localhost:3000/products/${index}`, {
     method: 'DELETE',
     })
     .then(response => {
